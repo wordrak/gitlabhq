@@ -4,6 +4,7 @@ class DashboardController < ApplicationController
   def index
     @groups = Group.where(id: current_user.projects.pluck(:group_id))
     @projects = current_user.projects_with_events
+    @projects.where(:group_id => nil)
     @projects = @projects.page(params[:page]).per(30)
 
     @events = Event.in_projects(current_user.project_ids).limit(20).offset(params[:offset] || 0)
