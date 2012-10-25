@@ -68,6 +68,6 @@ module Account
   end
 
   def projects_with_events
-    projects.includes(:events).order("events.created_at DESC")
+    projects.includes(:events).order("name")
   end
 end
